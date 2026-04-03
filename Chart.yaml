@@ -1,0 +1,10 @@
+apiVersion: v2
+name: core-microservice-template
+description: Универсальный шаблон для развертывания микросервисов в Kubernetes
+type: application
+
+# Версия самого чарта (меняется при правке шаблонов)
+version: 1.0.0
+
+# Версия приложения (например, тег образа Docker)
+appVersion: "1.22.0"
