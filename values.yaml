@@ -1,0 +1,23 @@
+# Количество запущенных копий приложения
+replicaCount: 2
+
+# Настройки контейнера
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  # Если tag не указан, Helm возьмет appVersion из Chart.yaml
+  tag: ""
+
+# Настройки сети внутри кластера
+service:
+  type: ClusterIP
+  port: 80
+
+# Настройки ресурсов (чтобы приложение не "съело" весь сервер)
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
