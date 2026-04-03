@@ -8,3 +8,9 @@ version: 1.0.0
 
 # Версия приложения (например, тег образа Docker)
 appVersion: "1.22.0"
+
+dependencies:
+  - name: redis
+    version: 17.4.0
+    repository: "oci://registry-1.docker.io/bitnamicharts"
+    condition: redis.enabled

@@ -11,3 +11,9 @@ helm lint .
 ```bash
 helm template my-test-release .
 ```
+
+Устновка зависимости связанной с Redis
+```bash
+helm dependency build .
+```
+
