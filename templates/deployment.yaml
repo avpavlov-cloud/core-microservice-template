@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Используем хелпер для генерации уникального имени
+  name: {{ include "core-microservice.fullname" . }}
+  labels:
+    {{- include "core-microservice.labels" . | nindent 4 }}
+spec:
+  # Берем количество реплик из values.yaml
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Chart.Name }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        {{- include "core-microservice.labels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          # Собираем строку образа: репозиторий + тег (или appVersion по умолчанию)
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          # Вставляем блок ресурсов с правильным отступом
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
