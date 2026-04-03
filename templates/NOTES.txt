@@ -1,0 +1,10 @@
+Поздравляем! Ваше приложение {{ .Release.Name }} успешно развернуто.
+
+1. Проверьте статус подов:
+   kubectl get pods -l app.kubernetes.io/instance={{ .Release.Name }}
+
+2. Ваше приложение будет доступно по адресу:
+   http://{{ .Values.ingress.host }}
+
+3. Для удаления приложения выполните:
+   helm uninstall {{ .Release.Name }}
