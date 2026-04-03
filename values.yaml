@@ -21,3 +21,20 @@ resources:
   requests:
     cpu: 100m
     memory: 128Mi
+
+# Настройки внешнего доступа
+ingress:
+  enabled: true
+  # Замените на ваш реальный домен или используйте локальный (например, my-app.local)
+  host: "my-app.local"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+
+# Настройки автоматического масштабирования
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
