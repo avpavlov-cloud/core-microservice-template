@@ -17,3 +17,8 @@ helm template my-test-release .
 helm dependency build .
 ```
 
+Генерация в файл
+```bash
+helm template my-release ./core-microservice-template | tee final_output.yaml
+```
+
