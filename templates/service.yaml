@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  # Используем тот же хелпер для имени, чтобы Service назывался так же, как Deployment
+  name: {{ include "core-microservice.fullname" . }}
+  labels:
+    {{- include "core-microservice.labels" . | nindent 4 }}
+spec:
+  # Тип сервиса берем из values.yaml (обычно ClusterIP)
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  # Селектор связывает этот сервис с подами из нашего Deployment
+  selector:
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
