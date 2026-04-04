@@ -46,6 +46,7 @@ minikube addons enable istio
 ```bash
 kubectl label namespace default istio-injection=enabled
 helm upgrade --install my-app .
+kubectl port-forward -n istio-system svc/istio-ingressgateway 8080:80
 ```
 
 
