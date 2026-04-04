@@ -38,4 +38,17 @@ istio:
     v2Weight: 0
 
 
+redis:
+  enabled: true
+  # Добавляем эти строки для обхода блокировок:
+  image:
+    registry: cr.yandex/mirror # Или другое доступное вам зеркало
+    repository: bitnami/redis
+    tag: 7.0.11-debian-11-r0
+  architecture: standalone # Для тестов лучше оставить так
+  auth:
+    enabled: false
+
+
+
 

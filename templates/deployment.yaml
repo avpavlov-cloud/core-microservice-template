@@ -16,6 +16,8 @@ spec:
     metadata:
       labels:
         {{- include "core-microservice.labels" . | nindent 8 }}
+        # ВАЖНО: эта метка нужна для работы DestinationRule (v1 subset)
+        version: v1
     spec:
       containers:
         - name: {{ .Chart.Name }}
