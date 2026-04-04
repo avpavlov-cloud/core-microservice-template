@@ -22,3 +22,13 @@ helm dependency build .
 helm template my-release ./core-microservice-template | tee final_output.yaml
 ```
 
+## Упаковка в метаданные проекта
+Упаковка
+```bash
+helm package .
+```
+
+Распаковка
+```bash
+helm show chart ./core-microservice-template-1.0.0.tgz
+```
