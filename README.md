@@ -32,3 +32,20 @@ helm package .
 ```bash
 helm show chart ./core-microservice-template-1.0.0.tgz
 ```
+
+## Включить Istio
+```bash
+minikube start
+```
+
+```bash
+minikube addons enable istio-provisioner
+minikube addons enable istio
+```
+
+```bash
+kubectl label namespace default istio-injection=enabled
+helm upgrade --install my-app .
+```
+
+

@@ -1,10 +1,20 @@
-Поздравляем! Ваше приложение {{ .Release.Name }} успешно развернуто.
+Поздравляем! Ваше приложение {{ .Release.Name }} успешно развернуто в экосистеме Istio.
 
-1. Проверьте статус подов:
+1. Проверьте статус подов и наличие Sidecar-контейнеров (должно быть 2/2 в колонке READY):
    kubectl get pods -l app.kubernetes.io/instance={{ .Release.Name }}
 
-2. Ваше приложение будет доступно по адресу:
-   http://{{ .Values.ingress.host }}
+2. Проверьте конфигурацию трафика Istio:
+   kubectl get virtualservice {{ include "core-microservice.fullname" . }}-vs
+   kubectl get destinationrule {{ include "core-microservice.fullname" . }}-dr
 
-3. Для удаления приложения выполните:
+3. Ваше приложение доступно через Istio Gateway по адресу:
+   http://{{ .Values.istio.host }}
+
+   (Если вы используете Minikube, выполните 'minikube tunnel', чтобы домен стал доступен локально)
+
+4. Распределение трафика:
+   v1 (стабильная): {{ .Values.istio.canary.v1Weight }}%
+   v2 (канареечная): {{ .Values.istio.canary.v2Weight }}%
+
+5. Для удаления приложения выполните:
    helm uninstall {{ .Release.Name }}
