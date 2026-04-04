@@ -3,7 +3,7 @@ entries:
   core-microservice-template:
   - apiVersion: v2
     appVersion: 1.22.0
-    created: "2026-04-04T13:05:51.99529608+03:00"
+    created: "2026-04-04T13:15:40.944858933+03:00"
     dependencies:
     - condition: redis.enabled
       name: redis
@@ -14,14 +14,14 @@ entries:
     name: core-microservice-template
     type: application
     urls:
-    - https://avpavlov-cloud.github.io/my-stable-repo/core-microservice-template-1.0.0.tgz
+    - https://avpavlov-cloud.github.io/core-microservice-template/core-microservice-template-1.0.0.tgz
     version: 1.0.0
   redis:
   - annotations:
       category: Database
     apiVersion: v2
     appVersion: 7.0.7
-    created: "2026-04-04T13:05:52.004943287+03:00"
+    created: "2026-04-04T13:15:40.949707529+03:00"
     dependencies:
     - name: common
       repository: oci://registry-1.docker.io/bitnamicharts
@@ -45,6 +45,6 @@ entries:
     sources:
     - https://github.com/bitnami/containers/tree/main/bitnami/redis
     urls:
-    - https://avpavlov-cloud.github.io/my-stable-repo/charts/redis-17.4.0.tgz
+    - https://avpavlov-cloud.github.io/core-microservice-template/charts/redis-17.4.0.tgz
     version: 17.4.0
-generated: "2026-04-04T13:05:51.980138701+03:00"
+generated: "2026-04-04T13:15:40.937683487+03:00"
